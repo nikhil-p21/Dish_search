@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DishSearch - Search for Dishes in Bangalore</title>
+    <style>
+        body {
+            background-image: url("https://seoimgak.mmtcdn.com/blog/sites/default/files/hero_528.jpg?__pIA7NiNRQj2i.CwaQF2aTbgQs9_u7R");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: white;
+            font-size: 36px;
+            margin-top: 100px;
+            -webkit-text-stroke: 1px black;
+        }
+
+        form {
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #CCCCCC;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #079447;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 50px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        li::before {
+            content: "▹";
+            margin-right: 10px;
+            color: #079447;
+        }
+         .item-name {
+            color: white;
+
+        }
+
+        .result-name {
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search for Dishes in Bangalore</h1>
+    <form method="get" action="{% url 'home' %}">
+        <input type="text" name="query" placeholder="Search for dishes" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query and results %}
+        <h2>Search Results:</h2>
+        <ul>
+            {% for result in results %}
+                <li class="item-name">{{ result.items }}: <center><strong class="result-name">{{ result.name }}</strong></center></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
